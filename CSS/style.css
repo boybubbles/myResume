@@ -42,13 +42,36 @@ ul {
   display: block;
   padding: 0px 30px;
   opacity: 1;
+  position: fixed;
+  left: 270px;
+  top: 0px;
+  right: 0;
+  bottom: 0px;
+  z-index: 0;
+  overflow-y: auto;
+  transition: all 0.3s ease;
+  overflow-x: hidden;
+}
+.section.back-section {
+  z-index: 1;
+}
+.section.active {
+  z-index: 2;
+  opacity: 1;
+  animation: slideSection 1s ease;
+}
+@keyframes slideSection {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
 }
 .hidden {
   display: none !important;
 }
-.main-content {
-  padding-left: 270px;
-}
+
 .padd-15 {
   padding-left: 15px;
   padding-right: 15px;
@@ -132,6 +155,7 @@ ul {
   justify-content: center;
   align-items: center;
   z-index: 10;
+  transition: all 0.3s ease;
 }
 
 .aside .logo {
@@ -189,8 +213,15 @@ ul {
   display: none;
   align-items: center;
   justify-content: center;
+  transition: all 0.3s ease;
 }
-
+.aside .nav-toggler.open span {
+  background-color: transparent;
+}
+.aside .nav-toggler.open span::before {
+  transform: rotate(45deg);
+  top: 0;
+}
 .aside .nav-toggler span {
   height: 2px;
   width: 18px;
@@ -198,6 +229,11 @@ ul {
   display: inline-block;
   position: relative;
 }
+.aside .nav-toggler.open span::after {
+  transform: rotate(-45deg);
+  top: 0;
+}
+
 .aside .nav-toggler span::before {
   content: "";
   height: 2px;
@@ -207,6 +243,7 @@ ul {
   left: 0;
   top: -6px;
 }
+
 .aside .nav-toggler span::after {
   content: "";
   height: 2px;
@@ -216,6 +253,7 @@ ul {
   left: 0;
   top: 6px;
 }
+
 .aside .nav {
   margin-top: 50px;
 }
@@ -355,7 +393,6 @@ h3.my-professional {
   margin-top: 25px;
 }
 .about .about-content .personal-info .buttons .btn {
-  margin-right: 15px;
   margin-top: 10px;
 }
 
@@ -642,11 +679,27 @@ h3.my-professional {
   padding: 0px 50px;
 }
 @media (max-width: 1199px) {
+  .section .container {
+    padding-top: 70px;
+  }
   .aside {
     left: -270px;
   }
-  .main-content {
-    padding-left: 0;
+  .aside .nav-toggler {
+    display: flex;
+    left: 30px;
+  }
+  .aside.open {
+    left: 0;
+  }
+  .aside .nav-toggler.open {
+    left: 300px;
+  }
+  .section {
+    left: 0;
+  }
+  .section.open {
+    left: 270px;
   }
   .about .about-content .personal-info .info-item p span {
     display: block;
